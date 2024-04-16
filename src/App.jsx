@@ -3,6 +3,9 @@ import Header from "./components/Header/Header.jsx";
 import BlogPage from "./components/BlogPage/BlogPage.jsx";
 import Profile from "./components/Profile/Profile.jsx";
 import React, { useState, useEffect } from 'react'
+import { Route, Routes } from 'react-router-dom'
+import NavBar from "./components/NavBar/NavBar.jsx";
+import Authentication from "./components/Authentication/Authentication.jsx";
 
 function App() {
   const [blogs, setBlogs] = useState([])
@@ -39,8 +42,12 @@ useEffect(() => {
   return (
     <>
       <Header searchTerm={searchTerm} passNewSearchTermFromHeaderToApp={passNewSearchTermFromHeaderToApp}/>
-      <BlogPage blogs={blogs} searchTerm={searchTerm} users={users} setSearchTerm={setSearchTerm}/>
-      {/* <Profile /> */}
+    <NavBar/>
+      <Routes>
+      <Route path='/' element={<BlogPage blogs={blogs} searchTerm={searchTerm} users={users} setSearchTerm={setSearchTerm}/>}></Route>
+      <Route path='/profile' element={<Profile/>}></Route>
+      <Route path='/authentication' element={<Authentication/>}></Route>
+      </Routes>
     </>
   );
 }
