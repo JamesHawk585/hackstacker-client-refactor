@@ -1,5 +1,6 @@
 import React from 'react'
 import BlogCard from '../BlogCard/BlogCard.jsx'
+import { container } from 'react-bootstrap'
 
 function BlogList({ blogs, users }) {
 
@@ -24,11 +25,13 @@ function BlogList({ blogs, users }) {
     const matchingUser = users.find(user => user.id === blog.user_id);
     console.log('matchingUser: ', matchingUser)
     return (
+        <container>
       <BlogCard 
         key={blog.id} 
         blog={blog}
         user={matchingUser}
       />
+      </container>
     );
   });
 

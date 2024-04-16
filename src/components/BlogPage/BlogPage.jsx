@@ -37,7 +37,7 @@ useEffect(() => {
 
   return (
     <main>
-        <BlogSearch searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
+        {/* <BlogSearch searchTerm={searchTerm} setSearchTerm={setSearchTerm}/> */}
         <BlogList blogs={filteredBlogs} users={users}/>
     </main>
   )
