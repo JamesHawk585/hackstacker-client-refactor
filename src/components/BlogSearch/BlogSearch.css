@@ -1,3 +1,4 @@
 .searchbar{
-    border-radius: 8px;
+    display: block;
+    unicode-bidi: isolate;
 }
