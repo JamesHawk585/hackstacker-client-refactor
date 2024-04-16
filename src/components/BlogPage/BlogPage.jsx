@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import BlogSearch from './BlogSearch'
+// import BlogSearch from './BlogSearch'
 import BlogList from './BlogList'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
