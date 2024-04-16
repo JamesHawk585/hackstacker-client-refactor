@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 // import BlogSearch from './BlogSearch'
-import BlogList from './BlogList'
+import BlogList from '../BlogList/BlogList.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 // When Usestate relies on fetched data, Usestate must be initialized in the same component as the fetch request. 
