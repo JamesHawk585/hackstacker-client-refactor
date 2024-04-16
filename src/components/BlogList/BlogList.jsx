@@ -1,6 +1,7 @@
 import React from 'react'
 import BlogCard from '../BlogCard/BlogCard.jsx'
 import { container } from 'react-bootstrap'
+import './BlogList.css'
 
 function BlogList({ blogs, users }) {
 
@@ -26,6 +27,7 @@ function BlogList({ blogs, users }) {
     console.log('matchingUser: ', matchingUser)
     return (
         <container>
+          <section className='blog-list'></section>
       <BlogCard 
         key={blog.id} 
         blog={blog}
