@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import BlogPost from './BlogPost';
+import BlogPost from '../BlogPost/BlogPost';
 
 function BlogCard({ blog, user }) {
   const {blogPostUserId, blogPostId, title, blog_content, publication_date} = blog

@@ -1,5 +1,5 @@
 import React from 'react';
-import BlogPage from './BlogPage'
+// import BlogPage from './BlogPage'
 
 const Header = () => {
   return (
