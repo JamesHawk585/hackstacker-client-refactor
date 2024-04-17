@@ -1,11 +1,21 @@
-import React from 'react'
-import BlogCard from '../BlogCard/BlogCard.jsx'
-import { container } from 'react-bootstrap'
-import './BlogList.css'
+import React from "react";
+import BlogCard from "../BlogCard/BlogCard.jsx";
+import { container } from "react-bootstrap";
+import "./BlogList.css";
 
-function BlogList({ blogs, users }) {
+function BlogList({ blogs, users, passBlogFromBlogPageToApp }) {
+  const {
+    usernames,
+    allUserBlogPosts,
+    allUserComments,
+    allUserBios,
+    allUserIds,
+  } = users;
 
-  const {usernames, allUserBlogPosts, allUserComments, allUserBios, allUserIds} = users
+  const passBlogFromBlogListToBlogPage = (blog) => {
+    passBlogFromBlogPageToApp(blog)
+    console.log(blog)
+  }
 
   // const findMatchingUser = users.find((user) => {
   //   console.log('user.id: ', user.id)
@@ -20,29 +30,16 @@ function BlogList({ blogs, users }) {
 
   // const { username, blog_posts, comments, bio, userId } = findMatchingUser || {};
 
-
-
-  const bList = blogs.map(blog => {
-    const matchingUser = users.find(user => user.id === blog.user_id);
-    console.log('matchingUser: ', matchingUser)
+  const bList = blogs.map((blog) => {
+    const matchingUser = users.find((user) => user.id === blog.user_id);
+    // console.log("matchingUser: ", matchingUser);
     return (
-        <container>
-          <section className='blog-list'></section>
-      <BlogCard 
-        key={blog.id} 
-        blog={blog}
-        user={matchingUser}
-      />
-      </container>
+      <BlogCard key={blog.id} blog={blog} user={matchingUser} passBlogFromBlogListToBlogPage={passBlogFromBlogListToBlogPage}/>
     );
   });
 
-  // After console.logging user.id and blog.id, it seems blog.id is returning the id of the blog post, not the id of the user that authored ther blog post. No blog.id should exceed 20, becuase we only have twenty users. Some authors will have more than one blog. 
 
-
-  
-  return <ul className="cards">{bList}</ul>
-  
+  return <ul className="cards">{bList}</ul>;
 }
 
-export default BlogList
+export default BlogList;

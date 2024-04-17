@@ -6,6 +6,7 @@ import React, { useState, useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import NavBar from "./components/NavBar/NavBar.jsx";
 import Authentication from "./components/Authentication/Authentication.jsx";
+import BlogPost from "./components/BlogPost/BlogPost.jsx";
 
 function App() {
   const [blogs, setBlogs] = useState([])
@@ -39,14 +40,23 @@ useEffect(() => {
     .then(r => r.json())
     .then(setBlogs)
 },[])
+
+const recieveBlogFromBlogPage = (blog) => {
+  console.log(blog)
+  return blog
+}
+
+recieveBlogFromBlogPage()
+
   return (
     <>
       <Header searchTerm={searchTerm} passNewSearchTermFromHeaderToApp={passNewSearchTermFromHeaderToApp}/>
     <NavBar/>
       <Routes>
-      <Route path='/' element={<BlogPage blogs={blogs} searchTerm={searchTerm} users={users} setSearchTerm={setSearchTerm}/>}></Route>
+      <Route path='/' element={<BlogPage blogs={blogs} searchTerm={searchTerm} users={users} setSearchTerm={setSearchTerm} recieveBlogFromBlogPage={recieveBlogFromBlogPage}/>}></Route>
       <Route path='/profile' element={<Profile/>}></Route>
       <Route path='/authentication' element={<Authentication/>}></Route>
+      <Route path='/BlogPost/:id' element={<BlogPost />}></Route>
       </Routes>
     </>
   );
