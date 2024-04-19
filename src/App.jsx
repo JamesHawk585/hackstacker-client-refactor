@@ -13,7 +13,6 @@ function App() {
   const [users, setUsers] = useState([])
   const [searchTerm, setSearchTerm] = useState("")
 
-  console.log(searchTerm)
 
 useEffect(() => {
   fetch(`http://127.0.0.1:5555/users`)
@@ -27,6 +26,7 @@ const passNewSearchTermFromHeaderToApp = (newSearchTerm) => {
 
 
 console.log(users)
+console.log(blogs)
 
 
   // 1. grab the user_id from blogs array of objects
@@ -56,7 +56,7 @@ recieveBlogFromBlogPage()
       <Route path='/' element={<BlogPage blogs={blogs} searchTerm={searchTerm} users={users} setSearchTerm={setSearchTerm} recieveBlogFromBlogPage={recieveBlogFromBlogPage}/>}></Route>
       <Route path='/profile' element={<Profile/>}></Route>
       <Route path='/authentication' element={<Authentication/>}></Route>
-      <Route path='/BlogPost/:id' element={<BlogPost />}></Route>
+      <Route path='/BlogPost/:id' element={<BlogPost users={users} blogs={blogs}/>}></Route>
       </Routes>
     </>
   );

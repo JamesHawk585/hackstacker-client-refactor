@@ -9,7 +9,7 @@ function BlogCard({ blog, user, passBlogFromBlogListToBlogPage }) {
   const navigate = useNavigate();
   const { blogPostUserId, blogPostId, title, blog_content, publication_date } =
     blog;
-  console.log(blog);
+  
   const [showPost, setShowPost] = useState(false);
   let contentArray = Array.isArray(blog_content)
     ? blog_content
@@ -19,11 +19,6 @@ function BlogCard({ blog, user, passBlogFromBlogListToBlogPage }) {
     setShowPost((prevShowPost) => !showPost);
     navigate("/BlogPost");
   }
-
-  const passBlogFromBlogCardToBlogList = (blog) => {
-    console.log(blog);
-    passBlogFromBlogListToBlogPage(blog);
-  };
 
 
   return (
