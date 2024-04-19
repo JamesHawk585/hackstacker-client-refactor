@@ -14,8 +14,10 @@ const BlogPost = () => {
 
   const params = useParams()
 
+  console.log(params.id)
+
   useEffect(() => {
-    fetch(`/blog_posts/${params.id}`)
+    fetch(`http://127.0.0.1:5555/blog_posts/${params.id}`)
     .then((r) => r.json())
     .then(console.log)
   }, [])
