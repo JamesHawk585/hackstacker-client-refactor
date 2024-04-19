@@ -14,15 +14,16 @@ const BlogPost = () => {
 
   const params = useParams()
 
-  console.log(params.id)
-
   useEffect(() => {
     fetch(`http://127.0.0.1:5555/blog_posts/${params.id}`)
     .then((r) => r.json())
-    .then(console.log)
+    .then((data) => setBlogPostDetails(data))
   }, [])
 
-  // console.log(blogPostDetails)
+  console.log(blogPostDetails)
+
+  let blogContent = blogPostDetails.blog_content
+  let publicationDate = blogPostDetails.publication_date
 
 
 
@@ -31,8 +32,10 @@ const BlogPost = () => {
 
   return (
     <div>
-      <h1>Blog Post</h1>
-      {/* <h2>{blog_content}</h2> */}
+      <h1>{blogPostDetails.title}</h1>
+      {/* <h2>{author}</h2> */}
+      <h2>{publicationDate}</h2>
+      <h2>{blogContent}</h2>
 
     </div>
   );
