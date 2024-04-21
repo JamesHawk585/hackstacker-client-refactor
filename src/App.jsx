@@ -7,6 +7,7 @@ import { Route, Routes } from 'react-router-dom'
 import NavBar from "./components/NavBar/NavBar.jsx";
 import Authentication from "./components/Authentication/Authentication.jsx";
 import BlogPost from "./components/BlogPost/BlogPost.jsx";
+import NewBlogForm from "./components/NewBlogForm/NewBlogForm.jsx";
 
 function App() {
   const [blogs, setBlogs] = useState([])
@@ -25,8 +26,6 @@ const passNewSearchTermFromHeaderToApp = (newSearchTerm) => {
 }
 
 
-console.log(users)
-console.log(blogs)
 
 
   // 1. grab the user_id from blogs array of objects
@@ -57,6 +56,7 @@ recieveBlogFromBlogPage()
       <Route path='/profile' element={<Profile/>}></Route>
       <Route path='/authentication' element={<Authentication/>}></Route>
       <Route path='/BlogPost/:id' element={<BlogPost users={users} blogs={blogs}/>}></Route>
+      <Route path='/newBlogPost' element={<NewBlogForm users={users} blogs={blogs}/>}></Route>
       </Routes>
     </>
   );
