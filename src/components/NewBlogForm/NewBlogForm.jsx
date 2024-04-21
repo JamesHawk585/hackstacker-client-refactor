@@ -34,7 +34,7 @@ const NewBlogForm = ({ blogs, users }) => {
       .then((data) => console.log(data));
   }
 
-  console.log("formData:", formData);
+
 
   return (
     <>
