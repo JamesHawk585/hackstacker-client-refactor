@@ -3,7 +3,7 @@ import BlogCard from "../BlogCard/BlogCard.jsx";
 import { container } from "react-bootstrap";
 import "./BlogList.css";
 
-function BlogList({ blogs, users, passBlogFromBlogPageToApp }) {
+function BlogList({ blogs, users }) {
   const {
     usernames,
     allUserBlogPosts,
@@ -12,16 +12,12 @@ function BlogList({ blogs, users, passBlogFromBlogPageToApp }) {
     allUserIds,
   } = users;
 
-  const passBlogFromBlogListToBlogPage = (blog) => {
-    passBlogFromBlogPageToApp(blog)
-    console.log(blog)
-  }
 
   const bList = blogs.map((blog) => {
     const matchingUser = users.find((user) => user.id === blog.user_id);
     // console.log("matchingUser: ", matchingUser);
     return (
-      <BlogCard key={blog.id} blog={blog} user={matchingUser} passBlogFromBlogListToBlogPage={passBlogFromBlogListToBlogPage}/>
+      <BlogCard key={blog.id} blog={blog} user={matchingUser} />
     );
   });
 
