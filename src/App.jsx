@@ -26,26 +26,15 @@ const passNewSearchTermFromHeaderToApp = (newSearchTerm) => {
 }
 
 
-
-
-  // 1. grab the user_id from blogs array of objects
-  // 2. Make a fetch request to "/users" by user_id. Return the username associated with the user_id 
-  // 3. pass username down to blog card. Append Author name to dom in blog card 
-
-// user_id is passed to BlogList via the blogs 
-// Create a fetch request in BlogList that will get the username from the users table and append the username to BlogCard.js
 useEffect(() => {
     fetch("http://127.0.0.1:5555/blog_posts")
     .then(r => r.json())
     .then(setBlogs)
 },[])
 
-// const recieveBlogFromBlogPage = (blog) => {
-//   console.log(blog)
-//   return blog
-// }
-
-// recieveBlogFromBlogPage()
+const addBlogPost = (blogPost) => {
+  setBlogs((current) => [...current, blogPost])
+}
 
   return (
     <>
@@ -55,8 +44,8 @@ useEffect(() => {
       <Route path='/' element={<BlogPage blogs={blogs} searchTerm={searchTerm} users={users} setSearchTerm={setSearchTerm}/>}></Route>
       <Route path='/profile' element={<Profile/>}></Route>
       <Route path='/authentication' element={<Authentication/>}></Route>
-      <Route path='/BlogPost/:id' element={<BlogPost users={users} blogs={blogs}/>}></Route>
-      <Route path='/newBlogPost' element={<NewBlogForm users={users} blogs={blogs}/>}></Route>
+      <Route path='/blogPosts/:id' element={<BlogPost users={users} blogs={blogs}/>}></Route>
+      <Route path='/newBlogPost' element={<NewBlogForm users={users} blogs={blogs} addBlogPost={addBlogPost}/>}></Route>
       </Routes>
     </>
   );

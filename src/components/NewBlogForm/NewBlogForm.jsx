@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Button from "react-bootstrap/Button";
+import { useNavigate, useParams } from 'react-router-dom'
 
-const NewBlogForm = ({ blogs, users }) => {
+const NewBlogForm = ({ blogs, users, addBlogPost }) => {
   const [formData, setFormData] = useState({
     title: "",
     blog_content: "",
   });
+  const navigate = useNavigate();
+  const { id } = useParams();
 
   function handleChange(e) {
     if (e.target.name === "title") {
@@ -29,11 +32,20 @@ const NewBlogForm = ({ blogs, users }) => {
       },
       body: JSON.stringify(formData),
     };
-    fetch("/blog_posts", configObj)
-      .then((r) => r.json())
-      .then((data) => console.log(data));
-  }
 
+    fetch("/blog_posts", configObj).then((r) => {
+        if (r.ok) {
+            r.json().then((blogPost) => {
+                addBlogPost(blogPost)
+                navigate(`/blogPosts/${blogPost.id}`);
+                // navigate(`/`);
+            })
+        }
+    })
+}
+
+// .then((r) => r.json())
+// .then((data) => console.log(data));
 
 
   return (
