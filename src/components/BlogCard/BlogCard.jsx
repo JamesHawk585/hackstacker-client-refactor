@@ -15,17 +15,12 @@ function BlogCard({ blog, user, passBlogFromBlogListToBlogPage }) {
     ? blog_content
     : [blog_content];
 
-  function handleClick(e) {
-    setShowPost((prevShowPost) => !showPost);
-    navigate("/BlogPost");
-  }
-
 
   return (
     <>
       <Card className="blogcard" id={blog.id}>
         <Card.Body>
-          <Link to={`BlogPost/${blog.id}`}>
+          <Link to={`blogPosts/${blog.id}`}>
             <Card.Title>{title}</Card.Title>
             <Card.Text>Publication Date: {publication_date} </Card.Text>
             <Card.Text id="authorName">{`Author: ${
@@ -36,7 +31,6 @@ function BlogCard({ blog, user, passBlogFromBlogListToBlogPage }) {
           </Link>
         </Card.Body>
       </Card>
-      {/* <BlogPost blog_content={blog_content}/> */}
     </>
   );
 }
