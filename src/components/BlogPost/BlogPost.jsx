@@ -15,27 +15,6 @@ const BlogPost = ({ users, blogs }) => {
   const [error, setError] = useState(null);
   const [authorUsername, setAuthorUsername] = useState("")
 
-  const copyOfBlogPostDetails = {...blogPostDetails}
-
-
-  
-
-  
-  useEffect((authorName) => {
-    if (users && blogPostDetails.user_id) {
-        const blogAuthor = users.find((user) => user.id === blogPostDetails.user_id);
-        if (blogAuthor) {
-          console.log(blogAuthor)
-          setAuthorUsername(blogAuthor.username)
-        } 
-      }
-    }, [users, blogPostDetails.user_id]);
-  
-    const authorName= (blogAuthor) => {
-      return blogAuthor.username
-    }
-
-
   useEffect(() => {
     fetch(`http://127.0.0.1:5555/blog_posts/${params.id}`)
       .then((r) => r.json())

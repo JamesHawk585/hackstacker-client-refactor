@@ -40,19 +40,19 @@ useEffect(() => {
     .then(setBlogs)
 },[])
 
-const recieveBlogFromBlogPage = (blog) => {
-  console.log(blog)
-  return blog
-}
+// const recieveBlogFromBlogPage = (blog) => {
+//   console.log(blog)
+//   return blog
+// }
 
-recieveBlogFromBlogPage()
+// recieveBlogFromBlogPage()
 
   return (
     <>
       <Header searchTerm={searchTerm} passNewSearchTermFromHeaderToApp={passNewSearchTermFromHeaderToApp}/>
     <NavBar/>
       <Routes>
-      <Route path='/' element={<BlogPage blogs={blogs} searchTerm={searchTerm} users={users} setSearchTerm={setSearchTerm} recieveBlogFromBlogPage={recieveBlogFromBlogPage}/>}></Route>
+      <Route path='/' element={<BlogPage blogs={blogs} searchTerm={searchTerm} users={users} setSearchTerm={setSearchTerm}/>}></Route>
       <Route path='/profile' element={<Profile/>}></Route>
       <Route path='/authentication' element={<Authentication/>}></Route>
       <Route path='/BlogPost/:id' element={<BlogPost users={users} blogs={blogs}/>}></Route>

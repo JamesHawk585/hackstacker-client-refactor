@@ -1,59 +1,69 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
-// import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import FloatingLabel from "react-bootstrap/FloatingLabel";
-import Button from 'react-bootstrap/Button'
+import Button from "react-bootstrap/Button";
 
 const NewBlogForm = ({ blogs, users }) => {
   const [formData, setFormData] = useState({
     title: "",
-    bog_content: "",
+    blog_content: "",
   });
 
   function handleChange(e) {
-    if (e.target.value === "title") {
+    if (e.target.name === "title") {
       setFormData({ ...formData, title: e.target.value });
     } else {
-      if (e.target.value === "blog_content") {
+      if (e.target.name === "blog_content") {
         setFormData({ ...formData, blog_content: e.target.value });
       }
     }
   }
 
-  function handleSubmit(e){
-    e.preventDefault()
+  function handleSubmit(e) {
+    e.preventDefault();
 
-    const congifObj = {
-        method:"POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(formData),
-    }
-    fetch("/blog_posts")
-    .then(r => r.json())
-    .then(console.log)
+    const configObj = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    };
+    fetch("/blog_posts", configObj)
+      .then((r) => r.json())
+      .then((data) => console.log(data));
   }
+
+  console.log("formData:", formData);
 
   return (
     <>
-    <form onSubmit={handleSubmit}>
-      <FloatingLabel
-        controlId="floatingTextarea"
-        label="Title"
-        className="mb-3"
-        onChange={handleChange}
-      >
-        <Form.Control as="textarea" />
-      </FloatingLabel>
-      <FloatingLabel controlId="floatingTextarea2" label="Tell your story..." onChange={handleChange}>
-        <Form.Control
-          as="textarea"
-          placeholder="Leave a comment here"
-          style={{ height: "1000px" }}
-        />
-      </FloatingLabel>
-      <Button variant="dark" type="submit">Publish</Button>
+      <form onSubmit={handleSubmit}>
+        <FloatingLabel
+          controlId="blog-title-section"
+          label="Title"
+          className="mb-3"
+        >
+          <Form.Control
+            as="textarea"
+            name="title"
+            onChange={handleChange}
+            value={formData.title}
+          />
+        </FloatingLabel>
+        <FloatingLabel controlId="blog-content-section" label="Tell your story...">
+          <Form.Control
+            as="textarea"
+            name="blog_content"
+            placeholder="Leave a comment here"
+            style={{ height: "1000px" }}
+            value={formData.blog_content}
+            onChange={handleChange}
+          />
+        </FloatingLabel>
+        <Button variant="dark" type="submit">
+          Publish
+        </Button>
       </form>
     </>
   );
